@@ -1,0 +1,85 @@
+class Song:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+class PlayList:
+    def __init__(self):
+        self.head=None
+    def is_empty(self):
+        return self.head is None
+    def append(self,data):
+        new_node=Song(data)
+        if self.head is None:
+            self.head=new_node
+            return
+        current=self.head
+        while current.next:
+            current=current.next
+        current.next=new_node
+    def add_song(self,data):
+        new_node=Song(data)
+        new_node.next=self.head
+        self.head=new_node
+    def pre_add_song(self,data):
+        new_node=Song(data)
+        new_node.next=self.head
+        self.head=new_node
+    def remove_song(self,data):
+        if self.head is None:
+            return
+        if self.head.data==data:
+            self.head=self.head.next
+            return
+        current=self.head
+        while current.next:
+            if current.next.data==data:
+                current.next=current.next.next
+                return
+            current=current.next
+        else:
+            print("Song is Not Found")
+    def find_song(self,data):
+        if self.head is None:
+            return
+        if self.head.data==data:
+            print("The given song is identified")
+        current=self.head
+        while current.next:
+            if current.next.data==data:
+                print("The given song is identified")
+                return
+            current.next=current.next.next
+        else:
+            print("The given song is not identified")
+    def insert_song(self,data,prev):
+        new_node=Song(data)
+        if self.head is None:
+            self.head=new_node
+        
+
+        
+        
+        
+    def display(self):
+        current=self.head
+        while current:
+            print(current.data,end="-->")
+            current=current.next
+        print("None")
+obj=PlayList()
+n=int(input("Enter no of data in Linked List:"))
+for i in range(n):
+    a=input(f"Enter data {i+1}:")
+    obj.add_song(a)
+obj.display()
+n=int(input("Enter no of data in Linked List:"))
+for i in range(n):
+    a=input(f"Enter data {i+1}:")
+    obj.pre_add_song(a)
+obj.display()
+a=input("Enter data to be delete:")
+obj.remove_song(a)
+obj.display()
+b=input("Enter data to be find:")
+obj.find_song(b)
+
