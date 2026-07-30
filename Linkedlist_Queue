@@ -1,0 +1,43 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+class Parking:
+    def __init__(self):
+        self.front=None
+        self.rear=None
+    def is_empty(self):
+        return self.front is None
+    def enqueue_cars(self,data):
+        new_node=Node(data)
+        if self.front is None:
+            self.front=self.rear=new_node
+        self.rear.next=new_node
+        self.rear=new_node        
+    def dequeue_cars(self):
+        if self.front is None:
+            return None
+        dispatch=self.front.data
+        self.front=self.front.next
+        if self.front is None:
+            self.rear=None
+        return dispatch
+    def display(self):
+        current=self.front
+        while current:
+            print(current.data,end="-->")
+            current=current.next
+        print("None")
+p=Parking()
+n=int(input("Enter no of cars to parking:"))
+for i in range(n):
+    c=input(f"Enter car {i+1} to park:")
+    p.enqueue_cars(c)
+p.display()
+print("\n")
+n1=int(input("Enter no of cars to takeout:"))
+for i in range(n1):
+    p.dequeue_cars()
+    p.display()
+    print("\n")
+
