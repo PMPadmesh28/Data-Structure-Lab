@@ -1,0 +1,24 @@
+op=set(["+","-","*","/","(",")","^"])
+prior={"+":1,"-":1,"*":2,"/":2,"^":3}
+def intopost(exp):
+    st=[]
+    out=''
+    for ch in exp:
+        if ch not in op:
+            out+=ch
+        elif ch=="(":
+            st.append('(')
+        elif ch==')':
+            while st and st[-1]!="(":
+                out+=st.pop()
+            st.pop()
+        else:
+            while st and st[-1]!="(" and prior[ch]<=prior[st[-1]]:
+                out+=stack.pop()
+            st.append(ch)
+    while st:
+        out+=st.pop()
+    return out
+exp=input("Enter infix Expression:")
+res=intopost(exp)
+print(f"The postfix expression is {res}")
