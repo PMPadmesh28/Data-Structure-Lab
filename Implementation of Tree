@@ -1,0 +1,44 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+def create_tree():
+    data=input("Enter node data(-1 if no node):")
+    if data=="-1":
+        return None
+    book=Node(data)
+    print(f"Enter value of left child {data}")
+    book.left=create_tree()
+
+    print(f"Enter value of right child {data}")
+    book.right=create_tree()
+    return book
+def inorder(book):
+    if book is None:
+        return None
+    inorder(book.left)
+    print(book.data,end=" -> ")
+    inorder(book.right)
+    print("End")
+def preorder(book):
+    if book is None:
+        return None
+    print(book.data,end=" -> ")
+    preorder(book.left)
+    preorder(book.right)
+    print("End")
+def postorder(book):
+    if book is None:
+        return None
+    postorder(book.left)
+    postorder(book.right)
+    print(book.data,end=" -> ")
+    print("End")
+book=create_tree()
+print("\nInorder: ",end="")
+inorder(book)
+print("\nPreorder: ",end="")
+preorder(book)
+print("\nPostorder: ",end="")
+postorder(book)
