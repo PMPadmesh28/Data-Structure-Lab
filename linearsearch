@@ -1,0 +1,15 @@
+a=[]
+n=int(input("Enter no Roll Numbers to add:"))
+for i in range(n):
+    b=int(input("Enter Roll Number :"))
+    a.append(b)
+found=False
+s=int(input("Enter the Roll Number to search:"))
+for i in a:
+    if i==s:
+        found=True
+        break
+if not found:
+    print(s,"roll number is not Found")
+else:
+    print(s,"roll number is Found")
