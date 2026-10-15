@@ -1,0 +1,80 @@
+size = int(input("Enter table size: "))
+hash_table = [None] * size
+
+
+def insert():
+  roll = int(input("Enter Roll Number: "))
+  name = input("Enter Name: ")
+  index = roll % size
+  for i in range(size):
+    pos = (index + i) % size
+    if hash_table[pos] is None or hash_table[pos] == "Empty":
+      hash_table[pos] = [roll, name]
+      print("Student record inserted!")
+      return
+
+  print("Hash Table is Full!")
+
+
+def search():
+  roll = int(input("Enter Roll Number to search: "))
+  index = roll % size
+
+  for i in range(size):
+    pos = (index + i) % size
+    if hash_table[pos] is not None and hash_table[pos] != "Empty":
+      if hash_table[pos][0] == roll:
+        print(f"Found at index {pos}: Name = {hash_table[pos][1]}")
+        return
+
+  print("Student record not found!")
+
+
+def delete():
+  roll = int(input("Enter Roll Number to delete: "))
+  index = roll % size
+
+  for i in range(size):
+    pos = (index + i) % size
+    if hash_table[pos] is not None and hash_table[pos] != "Empty":
+      if hash_table[pos][0] == roll:
+        hash_table[pos] = "Empty"
+        print("Record deleted successfully!")
+        return
+
+  print("Record not found!")
+
+
+def display():
+  print("\n--- Hash Table ---")
+  for i in range(size):
+    if hash_table[i] is None or hash_table[i] == "Empty":
+      print(f"Index {i} : Empty")
+    else:
+      print(
+          f"Index {i} : Roll No = {hash_table[i][0]}, Name ="
+          f" {hash_table[i][1]}"
+      )
+  print("------------------")
+while True:
+  print("\n1. Insert Student")
+  print("2. Search Student")
+  print("3. Delete Student")
+  print("4. Display Table")
+  print("5. Exit")
+
+  choice = int(input("Enter choice (1-5): "))
+
+  if choice == 1:
+    insert()
+  elif choice == 2:
+    search()
+  elif choice == 3:
+    delete()
+  elif choice == 4:
+    display()
+  elif choice == 5:
+    print("Thank you!")
+    break
+  else:
+    print("Invalid choice! Try again.")
